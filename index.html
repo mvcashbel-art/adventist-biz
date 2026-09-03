@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adventist Business Network</title>
+  <title>Isabel Adventist Business Directory</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
 
   <div id="sabbathBanner" class="hidden bg-emerald-700 text-white text-center py-2.5 px-4 text-sm font-medium shadow-inner">
-    ✨ Happy Sabbath! Business inquiries and direct transactions are paused until Saturday evening.
+    ✨ Malipayong Igpapahulay! Sabbath hours observed (Friday sunset to Saturday sunset). Business transactions are paused.
   </div>
 
   <div id="adminNotice" class="hidden bg-amber-500 text-slate-950 px-4 py-2 text-xs font-bold flex flex-wrap items-center justify-between gap-2 shadow-sm">
     <div class="flex items-center gap-2">
       <i data-lucide="shield-alert" class="w-4 h-4"></i>
-      <span>ADMIN MODE ACTIVE</span>
+      <span>ADMIN MODE ACTIVE (Isabel, Leyte Directory)</span>
     </div>
     <div class="flex items-center gap-2">
       <button onclick="openPendingModal()" class="bg-slate-900 text-white px-3 py-1 rounded-md text-[11px] hover:bg-slate-800 flex items-center gap-1.5 transition">
@@ -34,8 +34,8 @@
       <a href="#" class="flex items-center gap-3 group">
         <img src="download.png" alt="Seventh-day Adventist Logo" class="w-10 h-10 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform" />
         <div class="flex flex-col leading-tight">
-          <span class="font-bold text-lg text-slate-900 tracking-tight">Adventist<span class="text-blue-600">Biz</span></span>
-          <span class="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Directory</span>
+          <span class="font-bold text-lg text-slate-900 tracking-tight">Isabel<span class="text-blue-600">SDA</span> Directory</span>
+          <span class="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Isabel & Western Leyte</span>
         </div>
       </a>
       
@@ -48,13 +48,13 @@
   <header class="bg-slate-900 text-white py-14 px-4 text-center relative overflow-hidden">
     <div class="max-w-3xl mx-auto relative z-10">
       <span class="inline-block bg-blue-500/10 text-blue-300 border border-blue-400/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
-        Faith-Driven Directory
+        Isabel, Leyte Community
       </span>
       <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 text-slate-50">
-        Find Trusted Adventist Businesses
+        Find Adventist Businesses in Isabel
       </h1>
       <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto">
-        Connect with Sabbath-observant trades, healthcare practitioners, organic food producers, and professional services.
+        Support Sabbath-observant tradesmen, local farmers, health advocates, and professionals across Isabel and nearby Leyte towns.
       </p>
     </div>
   </header>
@@ -64,15 +64,18 @@
       <div class="flex flex-col md:flex-row gap-3">
         <div class="relative flex-1">
           <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-3.5 text-slate-400"></i>
-          <input type="text" id="keyword" oninput="filterDirectory()" placeholder="Search by name, service, or keyword..." 
+          <input type="text" id="keyword" oninput="filterDirectory()" placeholder="Search trades, business name, or barangay..." 
             class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition" />
         </div>
-        <div class="w-full md:w-56">
+        <div class="w-full md:w-64">
           <select id="locationSelect" onchange="filterDirectory()" 
             class="w-full py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white text-slate-700 transition">
-            <option value="all">All Locations</option>
-            <option value="Leyte / Ormoc">Isabel / Leyte</option>
-            
+            <option value="all">All Locations (Isabel & Nearby)</option>
+            <option value="Isabel - Poblacion">Isabel - Poblacion / Port Area</option>
+            <option value="Isabel - Matlang">Isabel - Matlang / Industrial</option>
+            <option value="Isabel - Rural Barangays">Isabel - Rural / Outlying Barangays</option>
+            <option value="Merida / Palompon Area">Merida / Palompon Area</option>
+            <option value="Ormoc / Delivery to Isabel">Ormoc / Delivery to Isabel</option>
           </select>
         </div>
       </div>
@@ -80,7 +83,7 @@
       <div class="flex flex-wrap gap-2 mt-4 pt-3 border-t border-slate-100" id="categoryPills">
         <button onclick="setCategory('all')" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-medium bg-blue-600 text-white shadow-sm transition" data-cat="all">All Categories</button>
         <button onclick="setCategory('Health & Wellness')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition" data-cat="Health & Wellness">Health & Wellness</button>
-        <button onclick="setCategory('Food & Dining')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition" data-cat="Food & Dining">Food & Dining</button>
+        <button onclick="setCategory('Food & Agriculture')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition" data-cat="Food & Agriculture">Food & Agriculture</button>
         <button onclick="setCategory('Trades & Home')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition" data-cat="Trades & Home">Trades & Construction</button>
         <button onclick="setCategory('Professional Services')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition" data-cat="Professional Services">Professional Services</button>
       </div>
@@ -107,7 +110,7 @@
       <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-600 leading-relaxed mb-6 border border-slate-100" id="modalDesc"></div>
       <div class="space-y-2" id="modalLinks"></div>
       <div class="mt-5 pt-3 border-t border-slate-100 text-center text-xs text-slate-400 flex items-center justify-center gap-1.5">
-        <i data-lucide="clock" class="w-3.5 h-3.5"></i> Closed weekly from Friday sunset to Saturday sunset
+        <i data-lucide="clock" class="w-3.5 h-3.5"></i> Closed Friday sunset to Saturday sunset
       </div>
     </div>
   </div>
@@ -119,7 +122,7 @@
       </button>
 
       <div class="mb-4">
-        <h3 id="formHeader" class="text-xl font-bold text-slate-900">List Your Business</h3>
+        <h3 id="formHeader" class="text-xl font-bold text-slate-900">List Your Isabel Business</h3>
         <p id="formSubtext" class="text-xs text-slate-500">Submissions will be reviewed by an administrator before appearing live.</p>
       </div>
 
@@ -133,7 +136,7 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Business Name *</label>
-          <input type="text" id="newName" required placeholder="e.g. Hebron Natural Wellness" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
+          <input type="text" id="newName" required placeholder="e.g. Isabel Adventist Health Bakery" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -141,15 +144,26 @@
             <label class="block text-xs font-semibold text-slate-700 mb-1">Category *</label>
             <select id="newCategory" required class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none bg-white">
               <option value="Health & Wellness">Health & Wellness</option>
-              <option value="Food & Dining">Food & Dining</option>
+              <option value="Food & Agriculture">Food & Agriculture</option>
               <option value="Trades & Home">Trades & Construction</option>
               <option value="Professional Services">Professional Services</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Location / Coverage *</label>
-            <input type="text" id="newLocation" required placeholder="e.g. Cebu City or Nationwide" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Location Area *</label>
+            <select id="newLocation" required class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none bg-white">
+              <option value="Isabel - Poblacion">Isabel - Poblacion</option>
+              <option value="Isabel - Matlang">Isabel - Matlang</option>
+              <option value="Isabel - Rural Barangays">Isabel - Rural Barangays</option>
+              <option value="Merida / Palompon Area">Merida / Palompon Area</option>
+              <option value="Ormoc / Delivery to Isabel">Ormoc / Delivery to Isabel</option>
+            </select>
           </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Specific Address / Barangay *</label>
+          <input type="text" id="newAddress" required placeholder="e.g. Brgy. Sto. Niño, Isabel, Leyte" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
         </div>
 
         <div>
@@ -159,17 +173,17 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Phone / WhatsApp</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Phone / Mobile (Globe/Smart)</label>
             <input type="tel" id="newPhone" placeholder="0917 123 4567" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Email</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Email (Optional)</label>
             <input type="email" id="newEmail" placeholder="contact@example.com" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Website or Social Page URL</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Facebook Page or Website</label>
           <input type="url" id="newWebsite" placeholder="https://facebook.com/..." class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none" />
         </div>
 
@@ -190,9 +204,9 @@
 
       <div class="mb-4">
         <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-          <i data-lucide="inbox" class="w-5 h-5 text-amber-500"></i> Pending Business Submissions
+          <i data-lucide="inbox" class="w-5 h-5 text-amber-500"></i> Pending Isabel Submissions
         </h3>
-        <p class="text-xs text-slate-500">Review and verify submissions before publishing them to the public directory.</p>
+        <p class="text-xs text-slate-500">Review and verify submissions from Isabel and Western Leyte before publishing.</p>
       </div>
 
       <div id="pendingList" class="space-y-4 max-h-[60vh] overflow-y-auto pr-1"></div>
@@ -200,7 +214,7 @@
   </div>
 
   <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
-    <p>© 2026 Adventist Business Network. Connecting community through biblical stewardship.</p>
+    <p>© 2026 Isabel Adventist Business Network &bull; Isabel, Leyte, Philippines.</p>
     <div class="mt-2">
       <button onclick="promptAdminLogin()" id="adminLoginBtn" class="text-slate-400 hover:text-slate-700 transition underline decoration-dotted">Admin Login</button>
     </div>
@@ -214,47 +228,47 @@
 
     const fallbackImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&h=300&fit=crop";
 
-    // Pre-approved businesses default list
+    // Pre-approved local businesses for Isabel, Leyte Area
     const defaultBusinesses = [
       {
         id: 1,
-        name: "Eden Harvest Organics",
-        category: "Food & Dining",
-        location: "Nationwide / Delivery",
-        desc: "Small-batch plant-based grocery delivery, whole grain flours, cold-pressed oils, and non-GMO pantry staples.",
+        name: "Matlang Organic & Fresh Produce",
+        category: "Food & Agriculture",
+        location: "Isabel - Matlang",
+        desc: "Chemical-free native vegetables, fresh coconuts, root crops, and natural fruit produce grown sustainably in Isabel, Leyte.",
         image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop",
-        phone: "+639171112233",
-        email: "contact@edenharvest.test",
-        website: "https://example.com",
+        phone: "09171234567",
+        email: "",
+        website: "https://facebook.com",
         status: "approved"
       },
       {
         id: 2,
-        name: "Restoration Lifestyle Clinic",
-        category: "Health & Wellness",
-        location: "Cebu",
-        desc: "Preventative lifestyle therapies, plant-based nutrition plans, and NEWSTART guidance.",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=300&h=300&fit=crop",
-        phone: "+639182223344",
-        email: "clinic@restoration.test",
-        website: "https://example.com",
+        name: "Western Leyte Solar & Electrical",
+        category: "Trades & Home",
+        location: "Isabel - Poblacion",
+        desc: "Certified residential wiring, home solar backups, inverter troubleshooting, and power maintenance servicing Isabel, Merida, and Palompon.",
+        image: "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=300&h=300&fit=crop",
+        phone: "09181234567",
+        email: "",
+        website: "",
         status: "approved"
       },
       {
         id: 3,
-        name: "Maranatha Solar & Electrical",
-        category: "Trades & Home",
-        location: "Leyte / Ormoc",
-        desc: "Licensed residential wiring, hybrid solar installations, and backup battery systems.",
-        image: "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=300&h=300&fit=crop",
-        phone: "+639193334455",
-        email: "solar@maranatha.test",
+        name: "Shalom Lifestyle & Health Bakery",
+        category: "Health & Wellness",
+        location: "Ormoc / Delivery to Isabel",
+        desc: "100% whole wheat bread, eggless baked items, chia seeds, and plant-based spreads. Weekly deliveries directly to Isabel.",
+        image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop",
+        phone: "09191234567",
+        email: "",
         website: "",
         status: "approved"
       }
     ];
 
-    let businesses = JSON.parse(localStorage.getItem("sda_businesses")) || defaultBusinesses;
+    let businesses = JSON.parse(localStorage.getItem("isabel_sda_businesses")) || defaultBusinesses;
     let isAdmin = sessionStorage.getItem("sda_is_admin") === "true";
     let currentCategory = "all";
 
@@ -290,7 +304,7 @@
         sessionStorage.setItem("sda_is_admin", "true");
         updateAdminUI();
         filterDirectory();
-        alert("Admin mode unlocked! You can now review pending submissions and manage listings.");
+        alert("Admin mode unlocked! You can now verify pending listings for Isabel.");
       } else if (pass !== null) {
         alert("Incorrect password.");
       }
@@ -316,7 +330,6 @@
       filterDirectory();
     }
 
-    // Displays ONLY APPROVED businesses to visitors
     function renderCards(list) {
       const grid = document.getElementById("directoryGrid");
       const approvedOnly = list.filter(b => b.status === "approved" || !b.status);
@@ -325,7 +338,7 @@
         grid.innerHTML = `
           <div class="col-span-full py-16 text-center text-slate-400">
             <i data-lucide="search-x" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-            <p class="font-medium">No verified businesses found matching your criteria.</p>
+            <p class="font-medium">No verified businesses found in this area/category.</p>
           </div>
         `;
         lucide.createIcons();
@@ -337,10 +350,10 @@
           
           ${isAdmin ? `
             <div class="absolute top-3 right-3 flex items-center gap-1 z-10 bg-white/95 backdrop-blur-sm p-1 rounded-lg border border-slate-200 shadow-sm">
-              <button onclick="editBusiness(${b.id})" title="Edit Business" class="p-1 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded">
+              <button onclick="editBusiness(${b.id})" title="Edit" class="p-1 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded">
                 <i data-lucide="edit-3" class="w-4 h-4"></i>
               </button>
-              <button onclick="deleteBusiness(${b.id})" title="Delete Business" class="p-1 text-slate-600 hover:text-red-600 hover:bg-slate-100 rounded">
+              <button onclick="deleteBusiness(${b.id})" title="Delete" class="p-1 text-slate-600 hover:text-red-600 hover:bg-slate-100 rounded">
                 <i data-lucide="trash-2" class="w-4 h-4"></i>
               </button>
             </div>
@@ -362,7 +375,7 @@
 
           <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
             <span onclick="openDetailModal(${b.id})" class="text-xs font-medium text-blue-600 group-hover:underline flex items-center gap-1 cursor-pointer">
-              View profile <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              Contact & details <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </span>
             <span class="text-[10px] text-slate-400 font-medium">Sabbath Observant</span>
           </div>
@@ -414,7 +427,7 @@
       if (biz.website) {
         linksContainer.innerHTML += `
           <a href="${biz.website}" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-sm font-medium transition">
-            <i data-lucide="globe" class="w-4 h-4"></i> Visit Website / Page
+            <i data-lucide="globe" class="w-4 h-4"></i> Visit Facebook / Page
           </a>`;
       }
 
@@ -425,10 +438,10 @@
     function openAddModal() {
       document.getElementById("businessForm").reset();
       document.getElementById("editBusinessId").value = "";
-      document.getElementById("formHeader").innerText = "List Your Business";
+      document.getElementById("formHeader").innerText = "List Your Isabel Business";
       document.getElementById("formSubtext").innerText = isAdmin 
         ? "Admin mode: this business will be published immediately." 
-        : "Submissions will be reviewed by an administrator before appearing live.";
+        : "Submissions will be verified by the admin before appearing live.";
       document.getElementById("submitBtn").innerText = isAdmin ? "Publish Listing" : "Submit for Verification";
       document.getElementById("addModal").classList.remove("hidden");
       lucide.createIcons();
@@ -442,6 +455,7 @@
       document.getElementById("newName").value = biz.name;
       document.getElementById("newCategory").value = biz.category;
       document.getElementById("newLocation").value = biz.location;
+      document.getElementById("newAddress").value = biz.location;
       document.getElementById("newDesc").value = biz.desc;
       document.getElementById("newPhone").value = biz.phone || "";
       document.getElementById("newEmail").value = biz.email || "";
@@ -456,13 +470,12 @@
     function deleteBusiness(id) {
       if (confirm("Are you sure you want to delete this listing?")) {
         businesses = businesses.filter(item => item.id !== id);
-        localStorage.setItem("sda_businesses", JSON.stringify(businesses));
+        localStorage.setItem("isabel_sda_businesses", JSON.stringify(businesses));
         filterDirectory();
         updateAdminUI();
       }
     }
 
-    // PENDING QUEUE LOGIC
     function openPendingModal() {
       renderPendingList();
       document.getElementById("pendingModal").classList.remove("hidden");
@@ -477,8 +490,8 @@
         container.innerHTML = `
           <div class="py-12 text-center text-slate-400">
             <i data-lucide="check-circle" class="w-10 h-10 mx-auto mb-2 text-emerald-500 opacity-80"></i>
-            <p class="font-medium text-slate-700">All caught up!</p>
-            <p class="text-xs">There are no pending business requests waiting for review.</p>
+            <p class="font-medium text-slate-700">No pending submissions!</p>
+            <p class="text-xs">There are no new business requests waiting for approval in Isabel.</p>
           </div>`;
         lucide.createIcons();
         return;
@@ -494,7 +507,7 @@
                 <span class="text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">${b.category}</span>
               </div>
               <h4 class="font-bold text-slate-900 text-base mt-0.5">${b.name}</h4>
-              <p class="text-xs text-slate-500">📍 ${b.location} &bull; ${b.phone || b.email || 'No direct contact'}</p>
+              <p class="text-xs text-slate-500">📍 ${b.location} &bull; ${b.phone || 'No phone'}</p>
               <p class="text-xs text-slate-600 mt-1 line-clamp-2 max-w-md">${b.desc}</p>
             </div>
           </div>
@@ -516,7 +529,7 @@
       const index = businesses.findIndex(b => b.id === id);
       if (index !== -1) {
         businesses[index].status = "approved";
-        localStorage.setItem("sda_businesses", JSON.stringify(businesses));
+        localStorage.setItem("isabel_sda_businesses", JSON.stringify(businesses));
         renderPendingList();
         updateAdminUI();
         filterDirectory();
@@ -526,7 +539,7 @@
     function rejectBusiness(id) {
       if (confirm("Reject and discard this business request?")) {
         businesses = businesses.filter(b => b.id !== id);
-        localStorage.setItem("sda_businesses", JSON.stringify(businesses));
+        localStorage.setItem("isabel_sda_businesses", JSON.stringify(businesses));
         renderPendingList();
         updateAdminUI();
         filterDirectory();
@@ -600,7 +613,6 @@
       }
 
       if (editId) {
-        // ADMIN EDITING EXISTING
         const index = businesses.findIndex(item => item.id == editId);
         if (index !== -1) {
           businesses[index].name = document.getElementById("newName").value;
@@ -616,7 +628,6 @@
         }
         alert("Listing updated successfully!");
       } else {
-        // NEW SUBMISSION: Admin gets instant approval, public gets pending
         const newListing = {
           id: Date.now(),
           name: document.getElementById("newName").value,
@@ -633,13 +644,13 @@
         businesses.unshift(newListing);
 
         if (isAdmin) {
-          alert("Listing published immediately as Admin!");
+          alert("Listing published immediately!");
         } else {
-          alert("Thank you! Your business request has been submitted. It will appear on the site once verified by our team.");
+          alert("Salamat! Your business request for Isabel area has been submitted for verification.");
         }
       }
 
-      localStorage.setItem("sda_businesses", JSON.stringify(businesses));
+      localStorage.setItem("isabel_sda_businesses", JSON.stringify(businesses));
       document.getElementById("businessForm").reset();
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Submit Listing";
@@ -650,11 +661,10 @@
     }
 
     function exportData() {
-      // Export only approved businesses for permanent public code
       const approvedOnly = businesses.filter(b => b.status === "approved" || !b.status);
       const dataStr = "const defaultBusinesses = " + JSON.stringify(approvedOnly, null, 2) + ";";
       navigator.clipboard.writeText(dataStr);
-      alert("Approved listings copied to clipboard! Paste it into 'const defaultBusinesses' inside index.html to make them permanent on GitHub.");
+      alert("Approved Isabel listings copied to clipboard! Paste it into 'const defaultBusinesses' inside index.html on GitHub.");
     }
 
     function checkSabbathStatus() {
