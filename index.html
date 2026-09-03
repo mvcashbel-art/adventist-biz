@@ -6,14 +6,40 @@
   <title>Isabel Adventist Business Directory</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printArea, #printArea * {
+        visibility: visible !important;
+      }
+      #printArea {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
 
-  <div id="sabbathBanner" class="hidden bg-emerald-700 text-white text-center py-2.5 px-4 text-sm font-medium shadow-inner">
+  <div id="sabbathBanner" class="hidden bg-emerald-700 text-white text-center py-2.5 px-4 text-sm font-medium shadow-inner no-print">
     ✨ Malipayong Igpapahulay! Sabbath hours observed (Friday sunset to Saturday sunset). Business transactions are paused.
   </div>
 
-  <div id="adminNotice" class="hidden bg-amber-500 text-slate-950 px-4 py-2 text-xs font-bold flex flex-wrap items-center justify-between gap-2 shadow-sm">
+  <div id="adminNotice" class="hidden bg-amber-500 text-slate-950 px-4 py-2 text-xs font-bold flex flex-wrap items-center justify-between gap-2 shadow-sm no-print">
     <div class="flex items-center gap-2">
       <i data-lucide="shield-alert" class="w-4 h-4"></i>
       <span>ADMIN MODE ACTIVE (Isabel Directory)</span>
@@ -29,12 +55,12 @@
     </div>
   </div>
 
-  <nav class="border-b border-slate-200 bg-white sticky top-0 z-30 shadow-sm">
+  <nav class="border-b border-slate-200 bg-white sticky top-0 z-30 shadow-sm no-print">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3 group">
         <img src="download.png" alt="Seventh-day Adventist Logo" class="w-10 h-10 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform" />
         <div class="flex flex-col leading-tight">
-          <span class="font-bold text-lg text-slate-900 tracking-tight">Isabel<span class="text-blue-600">SDA-Business</span> Directory</span>
+          <span class="font-bold text-lg text-slate-900 tracking-tight">Isabel<span class="text-blue-600">SDA</span> Directory</span>
           <span class="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Isabel, Leyte</span>
         </div>
       </a>
@@ -45,7 +71,7 @@
     </div>
   </nav>
 
-  <header class="bg-slate-900 text-white py-14 px-4 text-center relative overflow-hidden">
+  <header class="bg-slate-900 text-white py-14 px-4 text-center relative overflow-hidden no-print">
     <div class="max-w-3xl mx-auto relative z-10">
       <span class="inline-block bg-blue-500/10 text-blue-300 border border-blue-400/20 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
         Municipality of Isabel
@@ -59,7 +85,7 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 -mt-7 flex-1 w-full pb-16">
+  <main class="max-w-6xl mx-auto px-4 -mt-7 flex-1 w-full pb-16 no-print">
     <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-xl shadow-slate-200/50 border border-slate-200/80 mb-8">
       <div class="flex flex-col md:flex-row gap-3">
         <div class="relative flex-1">
@@ -99,29 +125,46 @@
   </main>
 
   <div id="detailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-100">
-      <button onclick="closeModal('detailModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition">
+    <div id="printArea" class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-slate-100">
+      
+      <button onclick="closeModal('detailModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition no-print">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
-      
-      <div class="flex items-center gap-4 mb-4">
-        <img id="modalImg" src="" alt="Business Logo" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shadow-sm" />
-        <div>
+
+      <div class="border-b pb-3 mb-4 hidden print:block">
+        <h2 class="text-sm font-bold tracking-wider uppercase text-slate-500">Isabel Adventist Business Directory</h2>
+        <p class="text-[11px] text-slate-400">Faith-based and Sabbath-observant Community Directory &bull; Isabel, Leyte</p>
+      </div>
+
+      <div class="flex items-start sm:items-center gap-4 mb-4">
+        <img id="modalImg" src="" alt="Business Logo" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border border-slate-200 shadow-sm shrink-0" />
+        <div class="overflow-hidden">
           <span id="modalCat" class="inline-block text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md mb-1"></span>
-          <h3 id="modalTitle" class="text-xl font-bold text-slate-900 leading-tight"></h3>
-          <p id="modalLoc" class="text-xs text-slate-500 flex items-center gap-1 mt-0.5"></p>
+          <h3 id="modalTitle" class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight"></h3>
+          <p id="modalLoc" class="text-xs text-slate-600 font-medium flex items-center gap-1 mt-1"></p>
         </div>
       </div>
 
-      <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-600 leading-relaxed mb-6 border border-slate-100" id="modalDesc"></div>
-      <div class="space-y-2" id="modalLinks"></div>
-      <div class="mt-5 pt-3 border-t border-slate-100 text-center text-xs text-slate-400 flex items-center justify-center gap-1.5">
-        <i data-lucide="clock" class="w-3.5 h-3.5"></i> Closed Friday sunset to Saturday sunset
+      <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 leading-relaxed mb-4 border border-slate-100" id="modalDesc"></div>
+
+      <div id="modalPrintContact" class="mb-4 text-xs text-slate-600 space-y-1 bg-slate-50 p-3 rounded-lg border border-slate-100"></div>
+
+      <div class="space-y-2 no-print" id="modalLinks"></div>
+
+      <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between no-print">
+        <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i> Print Profile / Save PDF
+        </button>
+        <span class="text-[11px] text-slate-400">Sabbath-Observant</span>
+      </div>
+
+      <div class="mt-4 pt-2 border-t border-slate-200 text-[10px] text-slate-400 text-center hidden print:block">
+        Closed weekly from Friday sunset to Saturday sunset. Printed from asiadproisabelmeridabusiness.com
       </div>
     </div>
   </div>
 
-  <div id="addModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div id="addModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto no-print">
     <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-slate-100 my-8">
       <button onclick="closeModal('addModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition">
         <i data-lucide="x" class="w-4 h-4"></i>
@@ -208,7 +251,7 @@
     </div>
   </div>
 
-  <div id="pendingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div id="pendingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto no-print">
     <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative border border-slate-100 my-8">
       <button onclick="closeModal('pendingModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition">
         <i data-lucide="x" class="w-4 h-4"></i>
@@ -225,7 +268,7 @@
     </div>
   </div>
 
-  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500 no-print">
     <p>© 2026 Isabel Adventist Business Network &bull; Isabel, Leyte, Philippines.</p>
     <div class="mt-2">
       <button onclick="promptAdminLogin()" id="adminLoginBtn" class="text-slate-400 hover:text-slate-700 transition underline decoration-dotted">Admin Login</button>
@@ -423,8 +466,17 @@
       document.getElementById("modalImg").src = biz.image || fallbackImage;
       document.getElementById("modalCat").innerText = biz.category;
       document.getElementById("modalTitle").innerText = biz.name;
-      document.getElementById("modalLoc").innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600"></i> ${biz.address || 'Brgy. ' + biz.barangay + ', Isabel, Leyte'}`;
+      document.getElementById("modalLoc").innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-blue-600 shrink-0"></i> ${biz.address || 'Brgy. ' + biz.barangay + ', Isabel, Leyte'}`;
       document.getElementById("modalDesc").innerText = biz.desc;
+
+      // Fill in print-specific contact summary
+      const printSummary = document.getElementById("modalPrintContact");
+      printSummary.innerHTML = `
+        <div><strong>Location:</strong> ${biz.address || 'Brgy. ' + biz.barangay + ', Isabel, Leyte'}</div>
+        ${biz.phone ? `<div><strong>Phone / Mobile:</strong> ${biz.phone}</div>` : ''}
+        ${biz.email ? `<div><strong>Email:</strong> ${biz.email}</div>` : ''}
+        ${biz.website ? `<div><strong>Page / Link:</strong> ${biz.website}</div>` : ''}
+      `;
 
       const linksContainer = document.getElementById("modalLinks");
       linksContainer.innerHTML = "";
